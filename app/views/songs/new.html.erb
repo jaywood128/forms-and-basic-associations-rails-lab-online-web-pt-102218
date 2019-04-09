@@ -3,9 +3,20 @@
 <%= form_for @song  do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
+  <%= f.label :song_artist_name %>
+  <%= f.text_field :artist_name %> 
+  <%= f.label :genre_id %>
+
+  <%= f.text_field :genre_id, list: "categories_autocomplete" %>
+  <datalist id="categories_autocomplete"> 
+    <% Song.genre_id.all.each do |genre| 
+      <option value="<% category.name %>">
+    <% end %> 
+  </datalist>
   <br />
 
   <%= f.submit %>
 <% end %>
+
 
 
