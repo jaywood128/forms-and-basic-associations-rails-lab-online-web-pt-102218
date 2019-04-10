@@ -10,15 +10,20 @@ class Song < ActiveRecord::Base
     self.artist ? self.artist.name : nil
   end
 
-  def genre_id=(ids)
-    ids.each do |id|
-      genre = Genre.find(id)
-      self.genre << genre 
-    end
+  def note_contents=(notes)
+    notes.each do |note|
+      if note.strip != ""
+        self.notes.build(content: note) 
+      end
+    end 
+    
   end
 
-  def genre_id
-    self.genre.id ? self.artist.genre.id : nil
+  def note_contents
+    self.notes.each do |note| 
+      note.content 
+    end 
   end
+
   # add associations here
 end
