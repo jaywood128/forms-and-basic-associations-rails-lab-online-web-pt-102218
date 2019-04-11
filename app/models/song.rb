@@ -11,19 +11,31 @@ class Song < ActiveRecord::Base
   end
 
   def note_contents=(notes)
+    
     notes.each do |note|
       if note.strip != ""
         self.notes.build(content: note) 
+        self.save 
       end
     end 
     
   end
 
   def note_contents
-    self.notes.each do |note| 
+    self.notes.map do |note| 
       note.content 
     end 
   end
+
+  def genre_name=(genre)
+    @genre = Genre.find_by_name(genre) 
+    self.genre_id = @genre.id 
+    self.save
+  end 
+
+  def genre_name 
+    self.genre_name 
+  end 
 
   # add associations here
 end
