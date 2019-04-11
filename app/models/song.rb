@@ -34,7 +34,7 @@ class Song < ActiveRecord::Base
   end 
 
   def genre_name 
-    self.genre_name 
+    self.genre.name 
   end 
 
   # add associations here
